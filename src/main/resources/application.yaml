@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5436/ite_ecommerce
+    username: postgres
+    password: qwer
+  application:
+    name: ecommerce-ite
