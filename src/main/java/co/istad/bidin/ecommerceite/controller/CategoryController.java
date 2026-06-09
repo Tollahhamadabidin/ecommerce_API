@@ -1,14 +1,12 @@
 package co.istad.bidin.ecommerceite.controller;
 
-import co.istad.bidin.ecommerceite.dto.CategoryPageResponse;
 import co.istad.bidin.ecommerceite.dto.CategoryResponse;
 import co.istad.bidin.ecommerceite.dto.CreateCategoryRequest;
 import co.istad.bidin.ecommerceite.service.CategoryService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/categories")
@@ -25,41 +23,46 @@ public class CategoryController {
         return categoryService.createCategory(createCategoryRequest);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public CategoryPageResponse getAllCategories(
+    public Page<CategoryResponse> getAllCategories(
             @RequestParam(defaultValue = "0") int pageNumber,
             @RequestParam(defaultValue = "25") int pageSize
     ) {
         return categoryService.getAllCategory(pageNumber, pageSize);
     }
-
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public CategoryResponse getCategoryById(@PathVariable Integer id) {
+    public CategoryResponse getCategoryById(@PathVariable Integer id){
         return categoryService.getCategoryById(id);
+    }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id}/subcategories")
+    public Page<CategoryResponse> getSubCategoriesByMainId (
+            @RequestParam Integer parentId,
+            @RequestParam(defaultValue = "0") int pageNumber,
+            @RequestParam(defaultValue = "25") int pageSize
+    ){
+        return categoryService.getSubCategoriesByMainId(parentId, pageNumber, pageSize);
+    }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}/soft-delete")
+    public void softDeleteCategory(@PathVariable Integer id) {
+        categoryService.softDeleteCategory(id);
     }
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void hardDelete(@PathVariable Integer id) {
+    public void hardDeleteCategory(@PathVariable Integer id) {
         categoryService.hardDeleteCategory(id);
     }
-    @PutMapping("/{id}")
-    public CategoryResponse softDelete(@PathVariable Integer id) {
-        return categoryService.softDeleteCategory(id);
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/{id}")
+    public CategoryResponse updateCategoryById(@PathVariable Integer id
+            , @RequestBody CreateCategoryRequest categoryRequest) {
+        return categoryService.updateCategoryById(id, categoryRequest);
     }
 
-
-//    @PatchMapping("/{id}")
-//    public CategoryResponse updateCategory(
-//            @PathVariable Integer id,
-//            @Valid @RequestBody UpdateCategoryRequest request
-//    ) {
-//        return categoryService.updateCategory(id, request);
-//    }
-
-
-//    @GetMapping("/{id}/subcategories")
-//    public List<CategoryResponse> getSubcategories(@PathVariable Integer id) {
-//        return categoryService.getSubcategoriesByParentId(id);
-//    }
 }

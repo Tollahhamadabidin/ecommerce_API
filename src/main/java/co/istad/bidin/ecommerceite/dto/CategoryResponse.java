@@ -1,14 +1,13 @@
 package co.istad.bidin.ecommerceite.dto;
 
-import lombok.Builder;
+import co.istad.bidin.ecommerceite.domain.Category;
 
-@Builder
 public record CategoryResponse(
         Integer id,
         String name,
         String description,
         String icon,
-        Boolean isDeleted,
-        CategoryResponse parentCategory
+        Boolean isDelete,
+        Category parentCategory
 ) {
 }

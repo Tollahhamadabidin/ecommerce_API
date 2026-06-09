@@ -3,7 +3,6 @@ package co.istad.bidin.ecommerceite.mapper;
 import co.istad.bidin.ecommerceite.domain.Category;
 import co.istad.bidin.ecommerceite.dto.CategoryResponse;
 import co.istad.bidin.ecommerceite.dto.CreateCategoryRequest;
-import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

@@ -3,8 +3,10 @@ package co.istad.bidin.ecommerceite.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import org.hibernate.validator.constraints.URL;
 
+@Builder
 public record CreateCategoryRequest(
 
         @NotBlank(message = "name is required")

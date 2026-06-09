@@ -1,25 +1,22 @@
 package co.istad.bidin.ecommerceite.service;
 
-import co.istad.bidin.ecommerceite.dto.CategoryPageResponse;
 import co.istad.bidin.ecommerceite.dto.CategoryResponse;
 import co.istad.bidin.ecommerceite.dto.CreateCategoryRequest;
-import co.istad.bidin.ecommerceite.dto.UpdateCategory;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface CategoryService {
     CategoryResponse createCategory(CreateCategoryRequest createCategoryRequest);
 
-    CategoryPageResponse getAllCategory(int pageNumber, int pageSize);
+    Page<CategoryResponse> getAllCategory (int pageNUmber, int pageSize);
 
     CategoryResponse getCategoryById(Integer id);
 
-    List<CategoryResponse> getSubcategoriesByParentId(Integer parentId);
+    Page<CategoryResponse> getSubCategoriesByMainId(Integer parentId, int pageNumber, int pageSize);
+
+    void softDeleteCategory(Integer id);
+
     void hardDeleteCategory(Integer id);
 
-    // PUT soft delete (toggle isDelete = true)
-    CategoryResponse softDeleteCategory(Integer id);
+    CategoryResponse updateCategoryById(Integer id, CreateCategoryRequest categoryRequest);
 
-    // PATCH update name, icon, description
-//    CategoryResponse updateCategory(Integer id, UpdateCategory request);
 }
