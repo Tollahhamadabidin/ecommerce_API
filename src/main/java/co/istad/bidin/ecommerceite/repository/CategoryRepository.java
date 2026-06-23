@@ -12,8 +12,6 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category , Integer> {
     boolean existsByName(String name);
-
     Page<Category> findAllByParentCategoryId(Integer parentId, Pageable pageable);
     List<Category> findAllByParentCategoryId(Integer parentId);
-
 }
