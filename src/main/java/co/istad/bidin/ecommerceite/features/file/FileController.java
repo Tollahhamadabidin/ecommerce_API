@@ -14,23 +14,31 @@ import java.util.List;
 public class FileController {
     private final FileUploadService fileUploadService;
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
-    public FileUploadResponse upload(@RequestPart MultipartFile file) {
-        return fileUploadService.upload(file);
-    }
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PostMapping
+//    public FileUploadResponse upload(@RequestPart MultipartFile file) {
+//        return fileUploadService.upload(file);
+//    }
+//
+//
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PostMapping("/multiple")
+//    public List<FileUploadResponse> uploadMultiple(@RequestPart List<MultipartFile> files) {
+//        return fileUploadService.uploadMultiple(files);
+//    }
+
+//
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public FileUploadResponse upload(@RequestPart MultipartFile file) {
+//        return fileUploadService.upload(file);
+//    }
 
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/multiple")
-    public List<FileUploadResponse> uploadMulti (@RequestPart MultipartFile[] files){
-        return fileUploadService.uploadMulti(files);
-    }
 
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{name}")
-    public void deleteByName(@PathVariable String name){
-        fileUploadService.deleteByName(name);
-    }
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @DeleteMapping("/{name}")
+//    public void deleteByName(@PathVariable String name){
+//        fileUploadService.deleteByName(name);
+//    }
 }

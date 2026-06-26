@@ -14,6 +14,9 @@ public class FileUpload {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long name;
+
+    @Column(nullable = false)
+    private  String extension;
     private String caption;
 
     @Column(nullable = false)
